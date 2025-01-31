@@ -15,6 +15,7 @@ public class prestamo extends javax.swing.JFrame {
      */
     public prestamo() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -120,11 +121,13 @@ public class prestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_jFormattedTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        Opciones opt = new Opciones();
+        opt.setVisible(true);
+        this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+                // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

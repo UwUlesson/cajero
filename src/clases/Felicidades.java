@@ -21,7 +21,7 @@ public class Felicidades extends javax.swing.JFrame {
 
     public void timerDel(){
     
-    Timer timer = new Timer(4000, e -> {
+    Timer timer = new Timer(3000, e -> {
         EstadoSesion.getInstancia().setEsOpt(false);
         bienvenida bien = new bienvenida(); 
         bien.setVisible(true);     
