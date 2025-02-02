@@ -11,33 +11,41 @@ package clases;
 public class PrestamoNew extends clasep{
 
     public PrestamoNew(){
-    
+        
     };
     
-    private static boolean Valor;
-    
-    public boolean GetVal(){
+    //valor del prestamo
+    private static int Valor;
+    public int GetVal(){
         return Valor;
     
     };
     
-    public void SetVal(boolean captura){
+    public void SetVal(int captura){
         Valor = captura;
     
     };
     
+    public static boolean Cumple;
+    
+    private void VerifPres(int cuant){
+        if(GetVal()<=50000000){
+            int Deposito=GetVal()+cuant;
+            if(Deposito>50000000){
+                Cumple=false;
+            }else{
+                SetVal(Deposito);
+                Cumple=true;
+            }
+        }else{
+            Cumple=false;
+        }
+    }
+    
     @Override
     public void Transacciones() {
-    //aqui verificara primero si supera los 50 millones, si no entonces, le suma cantidad, se hace las fechas de pago,
-    //la generacion del numero y se deja para que impresion los recoja y el booleano que verifica si cumple se pone en true
-    
-    // si si los supera cambia un booleano verifica si cumple y lo pone en false porque paso la cantidad, esto se envia
-    // al captura con un getVal
-    
-    // captura debe mirar el valor de getVal y continuar dependiendo, si no supera los 50 entonces los deja continuar si no
-    // le pone error que lo envia a opciones
-    
-    //pulir
+        prestamo pres = new prestamo();
+        VerifPres(pres.GetValText());
     }
     
 }

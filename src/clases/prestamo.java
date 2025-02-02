@@ -4,10 +4,9 @@
  */
 package clases;
 
-/**
- *
- * @author uwuless
- */
+import javax.swing.*;
+import javax.swing.text.*;
+
 public class prestamo extends javax.swing.JFrame {
 
     /**
@@ -16,19 +15,66 @@ public class prestamo extends javax.swing.JFrame {
     public prestamo() {
         initComponents();
         setLocationRelativeTo(null);
+        ((AbstractDocument) Prest.getDocument()).setDocumentFilter(new NumericFilter(8));
+    }
+
+    
+    //valor del cuadro texto
+    
+    private static int ValText;
+    
+    public int GetValText(){
+        return ValText;
+    
+    };
+    
+    public void SetValText(int captura){
+        ValText = captura;
+    
+    };
+    
+    
+    
+    public class NumericFilter extends DocumentFilter {
+    
+        private int maxLength;
+
+        public NumericFilter(int maxLength) {
+            this.maxLength = maxLength;
+        }
+
+        @Override
+        public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+            if (string == null) {
+                return;
+            }
+            // Obtenemos el texto actual del documento
+            Document doc = fb.getDocument();
+            String currentText = doc.getText(0, doc.getLength());
+            // Verificamos que la nueva cadena solo contenga dígitos y que no se exceda la longitud máxima
+            if (string.matches("[0-9]+") && (currentText.length() + string.length() <= maxLength)) {
+                super.insertString(fb, offset, string, attr);
+            }
+        // Si no cumple, no se inserta nada
+        }
+    
+        @Override
+        public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+            if (text == null) {
+                return;
+            }
+            Document doc = fb.getDocument();
+            String currentText = doc.getText(0, doc.getLength());
+            // Calcula la longitud que tendría el texto después de la operación:
+            int newLength = currentText.length() - length + text.length();
+            // Verificamos que el texto nuevo solo contenga dígitos y no exceda el límite
+            if (text.matches("[0-9]+") && newLength <= maxLength) {
+                super.replace(fb, offset, length, text, attrs);
+            }
+            // Si no cumple, no se hace el reemplazo
+        }
     }
     
-    private static int ValPres;
-    
-    public int GetValpres(){
-        return ValPres;
-    
-    };
-    
-    public void SetCap(int captura){
-        ValPres = captura;
-    
-    };
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,35 +133,36 @@ public class prestamo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Prest)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
             .addGroup(layout.createSequentialGroup()
-                .addGap(230, 230, 230)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(38, 38, 38)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Prest)
+                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(197, 197, 197)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(35, 35, 35)
                 .addComponent(jLabel1)
-                .addGap(45, 45, 45)
+                .addGap(50, 50, 50)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -149,9 +196,11 @@ public class prestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        SetValText(Integer.parseInt(this.Prest.getText()));
         captura cap = new captura();
         cap.setVisible(true);
-        this.dispose();// TODO add your handling code here:
+        this.dispose();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
