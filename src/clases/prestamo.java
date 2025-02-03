@@ -4,21 +4,43 @@
  */
 package clases;
 
+import com.toedter.calendar.JDateChooser;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import javax.swing.*;
 import javax.swing.text.*;
 
 public class prestamo extends javax.swing.JFrame {
 
-    /**
-     * Creates new form prestamo
-     */
+
     public prestamo() {
+        
         initComponents();
         setLocationRelativeTo(null);
         ((AbstractDocument) Prest.getDocument()).setDocumentFilter(new NumericFilter(8));
+
     }
 
+    private Date fechaSeleccionada ;
     
+    //getter de la fecha como date
+    public Date getFechaSeleccionada() {
+        return fecha.getDate(); // Retorna el valor actual del JDateChooser
+    }
+    
+    public String getStringFechaSel(){
+        return ConvDateString(getFechaSeleccionada());
+    }
+    
+    public String ConvDateString(Date fechaDate) {
+        if (fechaDate == null) {
+            return ""; // Retorna cadena vacía si la fecha es null
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        return sdf.format(fechaDate);
+    }
     //valor del cuadro texto
     
     private static int ValText;
@@ -33,8 +55,57 @@ public class prestamo extends javax.swing.JFrame {
     
     };
     
+    //contador
+    
+    private static int cont=0;
     
     
+    public int GetCont(){
+        return cont;
+    
+    };
+    //sumar meses
+    public Date sumarMesesAFecha(int meses) {
+        //fecha es el cuadro de la fecha
+        //fecha seleccionada es la variable de la fecha
+        if (fecha.getDate() == null) {
+            throw new IllegalArgumentException("No se ha seleccionado una fecha");
+        }
+        // Convertir Date a LocalDate (Java 8+)
+        LocalDate fechalocal = fecha.getDate().toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+        // Sumar meses
+        LocalDate nuevaFecha = fechalocal.plusMonths(meses);
+        // Convertir LocalDate a Date (para asignar de vuelta al JDateChooser si es necesario)
+        return Date.from(nuevaFecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
+    }
+    //sumar dias
+    public Date sumarDiasAFecha(int dias) {
+    if (fecha.getDate() == null) {
+        throw new IllegalArgumentException("No se ha seleccionado una fecha");
+    }
+    
+    // Convertir Date a LocalDate (Java 8+)
+    LocalDate fechaLocal = fecha.getDate().toInstant()
+            .atZone(ZoneId.systemDefault())
+            .toLocalDate();
+    
+    // Sumar días
+    LocalDate nuevaFecha = fechaLocal.plusDays(dias);
+    
+    // Convertir de vuelta a Date
+    return Date.from(nuevaFecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
+    }
+    
+    //fecha pago de cuotas 6 meses y de aqui para abajo agregar fechas 
+    //private String fechaPag = ConvDateString();
+    
+    
+    
+    
+    
+    //filtro para que solo acepte numeros y limite
     public class NumericFilter extends DocumentFilter {
     
         private int maxLength;
@@ -91,7 +162,7 @@ public class prestamo extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        fecha = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -151,7 +222,7 @@ public class prestamo extends javax.swing.JFrame {
                                 .addGap(38, 38, 38)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(Prest)
-                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(197, 197, 197)
                         .addComponent(jLabel1)))
@@ -174,7 +245,7 @@ public class prestamo extends javax.swing.JFrame {
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,15 +265,32 @@ public class prestamo extends javax.swing.JFrame {
         opt.setVisible(true);
         this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+    private String fechaFormateada;
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.cont+=1;
         SetValText(Integer.parseInt(this.Prest.getText()));
+        clasep transac = new PrestamoNew();
+        transac.Transacciones(); 
+        String fechaFormateada = ConvDateString(fecha.getDate());
         captura cap = new captura();
-        cap.setVisible(true);
-        this.dispose();
+        if(cap.GetCap()==null){
+            cap.setVisible(true);
+            this.dispose();
         
+        }else{
+            impresion imp = new impresion();
+            imp.setVisible(true);
+            this.dispose();
+         
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    
+    public String GetfechaForm(){
+        return fechaFormateada;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -240,9 +328,9 @@ public class prestamo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField Prest;
+    private com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

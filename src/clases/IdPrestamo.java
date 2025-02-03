@@ -208,30 +208,56 @@ public class IdPrestamo extends javax.swing.JFrame {
         this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    
+    private static String Iden;
+    private static String PrimNom;
+    private static String PrimApell;
+    private static String SeguApell;
+    private static String TeleCasa;
+    private static String TeleMovil;
+    
     private void IdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdActionPerformed
-        // TODO add your handling code here:
+        Iden = Id.getText();
     }//GEN-LAST:event_IdActionPerformed
 
     private void PriNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PriNomActionPerformed
-        // TODO add your handling code here:
+        PrimNom = PriNom.getText();
     }//GEN-LAST:event_PriNomActionPerformed
 
     private void PriApeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PriApeActionPerformed
-        // TODO add your handling code here:
+        PrimApell = PriApe.getText();
     }//GEN-LAST:event_PriApeActionPerformed
 
     private void SegApeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SegApeActionPerformed
-        // TODO add your handling code here:
+        SeguApell = SegApe.getText();
     }//GEN-LAST:event_SegApeActionPerformed
 
     private void TelCasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelCasActionPerformed
-        // TODO add your handling code here:
+        TeleCasa = TelCas.getText();
     }//GEN-LAST:event_TelCasActionPerformed
 
     private void TelMovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelMovActionPerformed
-        // TODO add your handling code here:
+        TeleMovil = TelMov.getText();
     }//GEN-LAST:event_TelMovActionPerformed
-
+     
+    public String getIden() {
+        return Iden;
+    }
+    public String getPrimNom() {
+        return PrimNom;
+    }
+    public String getPrimApell() {
+        return PrimApell;
+    }
+    public String getSeguApell() {
+        return SeguApell;
+    }
+    public String getTeleCasa() {
+        return TeleCasa;
+    }
+    public String getTeleMovil() {
+        return TeleMovil;
+    }
     /**
      * @param args the command line arguments
      */

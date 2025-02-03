@@ -203,9 +203,20 @@ public class Opciones extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        IdPrestamo pres = new IdPrestamo();
-        pres.setVisible(true);
-        this.dispose();
+        captura cap = new captura();
+        if(cap.GetCap()==null){
+            IdPrestamo pres = new IdPrestamo();
+            pres.setVisible(true);
+            this.dispose();
+        
+        }else{
+            prestamo presta = new prestamo();
+            presta.setVisible(true);
+            this.dispose();
+            
+        }
+        
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**

@@ -18,14 +18,14 @@ public class captura extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    private static boolean Captura;
+    private static Boolean Captura = null;
     
-    public boolean GetCap(){
+    public Boolean GetCap(){
         return Captura;
     
     };
     
-    public void SetCap(boolean captura){
+    public void SetCap(Boolean captura){
         Captura = captura;
     
     };
@@ -114,13 +114,17 @@ public class captura extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        clasep transac = new PrestamoNew();
-        transac.Transacciones();        // SetCap true 
+        SetCap(true);
+        impresion imp = new impresion();
+        imp.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        clasep transac = new PrestamoNew();
-        transac.Transacciones(); // Setcap false
+        SetCap(false);
+        impresion imp = new impresion();
+        imp.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
