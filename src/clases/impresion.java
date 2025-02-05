@@ -23,11 +23,13 @@ public class impresion extends javax.swing.JFrame {
     private void MosDat(){
         captura cap = new captura();
         if(cap.GetCap()){
-            //codigo mostrar todos los datos 
-        
+            DatNec();
+            DatOpc();
+            
         }else{
             DatNec();
-
+            OcultDatOpc();
+            
         }
         
     };
@@ -36,10 +38,36 @@ public class impresion extends javax.swing.JFrame {
         IdPrestamo id = new IdPrestamo(); 
         prestamo pres = new prestamo();
         PrestamoNew Npres = new PrestamoNew();
-        this.Numero.setText(id.getIden()+"-"+pres.getStringFechaSel()+"-"+pres.GetCont());
+        this.Numero.setText(id.getIden()+"-"+pres.GetfechaForm()+"-"+pres.GetCont());
         this.Id.setText(id.getIden());
         this.CantPres.setText(Integer.toString(pres.GetValText()));
         this.PresTot.setText(Integer.toString(Npres.GetVal()));
+        
+    }
+    
+    private void DatOpc(){
+        IdPrestamo id = new IdPrestamo(); 
+        prestamo pres = new prestamo();
+        PrestamoNew Npres = new PrestamoNew();
+        this.NomPres.setText(id.getPrimNom());
+        this.ApellPres.setText(id.getPrimApell()+" "+id.getSeguApell());
+        this.TelCasa.setText(id.getTeleCasa());
+        this.TelMovil.setText(id.getTeleMovil());
+        
+    }
+    
+    private void OcultDatOpc(){
+        IdPrestamo id = new IdPrestamo(); 
+        prestamo pres = new prestamo();
+        PrestamoNew Npres = new PrestamoNew();
+        this.NomPres.setText("");
+        this.ApellPres.setText("");
+        this.TelCasa.setText("");
+        this.TelMovil.setText("");
+        this.opcional1.setText("");
+        this.opcional2.setText("");
+        this.opcional3.setText("");
+        this.opcional4.setText("");
         
     }
     
@@ -57,6 +85,14 @@ public class impresion extends javax.swing.JFrame {
         PresTot = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         Id = new javax.swing.JLabel();
+        opcional1 = new javax.swing.JLabel();
+        opcional2 = new javax.swing.JLabel();
+        opcional3 = new javax.swing.JLabel();
+        opcional4 = new javax.swing.JLabel();
+        NomPres = new javax.swing.JLabel();
+        ApellPres = new javax.swing.JLabel();
+        TelCasa = new javax.swing.JLabel();
+        TelMovil = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,6 +123,22 @@ public class impresion extends javax.swing.JFrame {
 
         Id.setText("Id");
 
+        opcional1.setText("Nombre prestamista");
+
+        opcional2.setText("apellidos prestamista");
+
+        opcional3.setText("Telefono Casa");
+
+        opcional4.setText("Telefono Movil");
+
+        NomPres.setText("NomPres");
+
+        ApellPres.setText("ApellPres");
+
+        TelCasa.setText("TelCasa");
+
+        TelMovil.setText("TelMovil");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,44 +152,76 @@ public class impresion extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(140, 140, 140)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(CantPres)
-                                    .addComponent(PresTot)))
-                            .addComponent(jLabel5)))
+                                    .addComponent(PresTot))
+                                .addGap(264, 264, 264)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TelCasa)
+                                    .addComponent(TelMovil)
+                                    .addComponent(ApellPres)
+                                    .addComponent(NomPres)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGap(169, 169, 169)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(opcional4)
+                                    .addComponent(opcional3)
+                                    .addComponent(opcional2)
+                                    .addComponent(opcional1))))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(167, 167, 167)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Id)
-                            .addComponent(Numero))))
-                .addContainerGap(497, Short.MAX_VALUE))
+                            .addComponent(Numero))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(209, 209, 209))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(opcional1))
                 .addGap(14, 14, 14)
-                .addComponent(Numero)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Numero)
+                    .addComponent(NomPres))
                 .addGap(25, 25, 25)
-                .addComponent(jLabel5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(opcional2))
                 .addGap(28, 28, 28)
-                .addComponent(Id)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Id)
+                    .addComponent(ApellPres))
                 .addGap(27, 27, 27)
-                .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(opcional3))
                 .addGap(27, 27, 27)
-                .addComponent(CantPres)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CantPres)
+                    .addComponent(TelCasa))
                 .addGap(26, 26, 26)
-                .addComponent(jLabel4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(opcional4))
                 .addGap(26, 26, 26)
-                .addComponent(PresTot)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PresTot)
+                    .addComponent(TelMovil))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
@@ -188,15 +272,23 @@ public class impresion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ApellPres;
     private javax.swing.JLabel CantPres;
     private javax.swing.JLabel Id;
+    private javax.swing.JLabel NomPres;
     private javax.swing.JLabel Numero;
     private javax.swing.JLabel PresTot;
+    private javax.swing.JLabel TelCasa;
+    private javax.swing.JLabel TelMovil;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel opcional1;
+    private javax.swing.JLabel opcional2;
+    private javax.swing.JLabel opcional3;
+    private javax.swing.JLabel opcional4;
     // End of variables declaration//GEN-END:variables
 }

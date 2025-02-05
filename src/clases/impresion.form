@@ -30,32 +30,52 @@
           </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="CantPres" min="-2" max="-2" attributes="0"/>
+                                  <Component id="CantPres" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="PresTot" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="264" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="TelCasa" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TelMovil" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ApellPres" min="-2" max="-2" attributes="0"/>
+                                  <Component id="NomPres" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="169" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="opcional4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="opcional3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="opcional2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="opcional1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="Id" min="-2" max="-2" attributes="0"/>
                           <Component id="Numero" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="13" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="497" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="209" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -64,22 +84,46 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="opcional1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-              <Component id="Numero" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="Numero" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="NomPres" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="opcional2" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Component id="Id" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="Id" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ApellPres" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="opcional3" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Component id="CantPres" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="CantPres" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TelCasa" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="opcional4" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="PresTot" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="PresTot" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TelMovil" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="190" max="32767" attributes="0"/>
               <Component id="jButton1" min="-2" pref="104" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -145,6 +189,46 @@
     <Component class="javax.swing.JLabel" name="Id">
       <Properties>
         <Property name="text" type="java.lang.String" value="Id"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="opcional1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nombre prestamista"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="opcional2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="apellidos prestamista"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="opcional3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Telefono Casa"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="opcional4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Telefono Movil"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="NomPres">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="NomPres"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ApellPres">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ApellPres"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="TelCasa">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="TelCasa"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="TelMovil">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="TelMovil"/>
       </Properties>
     </Component>
   </SubComponents>

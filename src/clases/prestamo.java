@@ -22,8 +22,6 @@ public class prestamo extends javax.swing.JFrame {
         ((AbstractDocument) Prest.getDocument()).setDocumentFilter(new NumericFilter(8));
 
     }
-
-    private Date fechaSeleccionada ;
     
     //getter de la fecha como date
     public Date getFechaSeleccionada() {
@@ -266,14 +264,15 @@ public class prestamo extends javax.swing.JFrame {
         this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
     
-    private String fechaFormateada;
+    private static String fechaForm;
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.cont+=1;
+        fechaForm = ConvDateString(fecha.getDate());
+        System.out.println(fechaForm);
         SetValText(Integer.parseInt(this.Prest.getText()));
         clasep transac = new PrestamoNew();
         transac.Transacciones(); 
-        String fechaFormateada = ConvDateString(fecha.getDate());
         captura cap = new captura();
         if(cap.GetCap()==null){
             cap.setVisible(true);
@@ -288,7 +287,9 @@ public class prestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
     
     public String GetfechaForm(){
-        return fechaFormateada;
+        System.out.println(fechaForm);
+        return fechaForm;
+        
     }
     
     /**
