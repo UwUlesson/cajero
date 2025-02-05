@@ -7,6 +7,7 @@ package clases;
 import com.toedter.calendar.JDateChooser;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Calendar;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import javax.swing.*;
@@ -21,6 +22,45 @@ public class prestamo extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         ((AbstractDocument) Prest.getDocument()).setDocumentFilter(new NumericFilter(8));
 
+    }
+    private static Date DateAuth;
+    //sumar 11 dias si la funcion supera los 20 dias, devuelve fecha auth
+    private void veintDiasAuth(){
+        Date FechaSel = fecha.getDate();
+        Calendar calen = Calendar.getInstance();
+        calen.setTime(FechaSel);
+        
+        int diaMes = calen.get(Calendar.DAY_OF_MONTH);
+        
+        if(diaMes>=20){
+            //sumar 11 dias + 7 del pago
+            DateAuth = sumarDiasAFecha(17);
+        }else{
+            //establecer fecha pago 7 dias despues
+            Date posDate = sumarDiasAFecha(7);
+            calen.setTime(posDate);
+            if (calen.get(Calendar.DAY_OF_MONTH)>=20){
+                DateAuth = sumarDiasAFecha(14);
+                
+            }else{
+                DateAuth = posDate;
+                
+            }
+        }
+    }
+    /*
+    private static Date fechaTent;
+    
+    //funcion de fechaTentativa
+    
+    private Date fechaTentativa(){
+        return sumarDiasAFecha(7);
+    
+    }
+    */
+    //getter de la fecha como string
+    public String getStrAuth(){
+        return ConvDateString(DateAuth);
     }
     
     //getter de la fecha como date
@@ -269,7 +309,7 @@ public class prestamo extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.cont+=1;
         fechaForm = ConvDateString(fecha.getDate());
-        System.out.println(fechaForm);
+
         SetValText(Integer.parseInt(this.Prest.getText()));
         clasep transac = new PrestamoNew();
         transac.Transacciones(); 
@@ -287,7 +327,7 @@ public class prestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
     
     public String GetfechaForm(){
-        System.out.println(fechaForm);
+
         return fechaForm;
         
     }
