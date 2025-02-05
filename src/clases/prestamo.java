@@ -48,16 +48,16 @@ public class prestamo extends javax.swing.JFrame {
             }
         }
     }
-    /*
+    
     private static Date fechaTent;
     
     //funcion de fechaTentativa
     
     private Date fechaTentativa(){
-        return sumarDiasAFecha(7);
+        return sumDiasFecha(7,DateAuth);
     
     }
-    */
+    
     //getter de la fecha como string
     public String getStrAuth(){
         return ConvDateString(DateAuth);
@@ -135,10 +135,20 @@ public class prestamo extends javax.swing.JFrame {
     // Convertir de vuelta a Date
     return Date.from(nuevaFecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
+    //sumar dias a fecha pedida
+    public Date sumDiasFecha(int dias, Date fechaPed) {
     
-    //fecha pago de cuotas 6 meses y de aqui para abajo agregar fechas 
-    //private String fechaPag = ConvDateString();
+    // Convertir Date a LocalDate (Java 8+)
+    LocalDate fechaLocal = fechaPed.toInstant()
+            .atZone(ZoneId.systemDefault())
+            .toLocalDate();
     
+    // Sumar días
+    LocalDate nuevaFecha = fechaLocal.plusDays(dias);
+    
+    // Convertir de vuelta a Date
+    return Date.from(nuevaFecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
+    }
     
     
     
