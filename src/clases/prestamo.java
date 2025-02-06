@@ -49,15 +49,36 @@ public class prestamo extends javax.swing.JFrame {
         }
     }
     
-    private static Date fechaTent;
+    //getter de autorizacion
+    public String StrDateAuth(){
+        return ConvDateString(DateAuth);
     
-    //funcion de fechaTentativa
+    }
+    
+    //getter de fecha Tentativa
     
     private Date fechaTentativa(){
         return sumDiasFecha(7,DateAuth);
     
     }
     
+    public String StrfechaTent(){
+        return ConvDateString(fechaTentativa());
+    }
+    
+    public String StrfechasPago[];
+    // array de las 6 fechas de pago
+    public void seisFechasPago(){
+        Date fechasPago[];
+        fechasPago = new Date[6];
+        StrfechasPago = new String[6];
+        for(int i=0;i<fechasPago.length;i++){
+            fechasPago[i]=(sumDiasFecha(6*(i+1),fechaTentativa()));
+            StrfechasPago[i]=(ConvDateString(fechasPago[i]));
+            System.out.println(StrfechasPago);
+        }
+    
+    }
     //getter de la fecha como string
     public String getStrAuth(){
         return ConvDateString(DateAuth);
@@ -135,6 +156,9 @@ public class prestamo extends javax.swing.JFrame {
     // Convertir de vuelta a Date
     return Date.from(nuevaFecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
+    
+    
+    
     //sumar dias a fecha pedida
     public Date sumDiasFecha(int dias, Date fechaPed) {
     
@@ -319,7 +343,7 @@ public class prestamo extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.cont+=1;
         fechaForm = ConvDateString(fecha.getDate());
-
+        veintDiasAuth();
         SetValText(Integer.parseInt(this.Prest.getText()));
         clasep transac = new PrestamoNew();
         transac.Transacciones(); 
