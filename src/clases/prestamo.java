@@ -193,6 +193,21 @@ public class prestamo extends javax.swing.JFrame {
     }
     
     
+    //obtener dias
+    public int GetDias(Date fechaPed) {
+    
+    // Convertir Date a LocalDate (Java 8+)
+    LocalDate fechaLocal = fechaPed.toInstant()
+            .atZone(ZoneId.systemDefault())
+            .toLocalDate();
+    
+    // dia del mes
+    int DiaMes = fechaLocal.getDayOfMonth();
+    
+    // Convertir de vuelta a Date
+    return DiaMes;
+    }
+       
     
     
     //filtro para que solo acepte numeros y limite
@@ -268,7 +283,7 @@ public class prestamo extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Fecha de Pago:");
+        jLabel3.setText("Fecha de Solicitud:");
 
         jButton1.setBackground(new java.awt.Color(255, 255, 102));
         jButton1.setText("Regresar");
@@ -362,9 +377,12 @@ public class prestamo extends javax.swing.JFrame {
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try{    
+            PrestamoNew pres = new PrestamoNew();
             if((fecha.getDate() == null && Prest.getText().trim().isEmpty())||
                     (Prest.getText().equals("0")||
-                    (Integer.parseInt(Prest.getText()))>50000000)){                           
+                    (Integer.parseInt(Prest.getText()))>50000000)||
+                    (GetDias(fecha.getDate())>=20)||
+                    ((pres.GetVal()+Integer.parseInt(Prest.getText()))>50000000)){                           
                 Warning war = new Warning();
                 war.setVisible(true);
                 this.dispose();

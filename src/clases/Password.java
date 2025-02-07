@@ -414,13 +414,13 @@ public class Password extends javax.swing.JFrame {
     private void verOcultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verOcultarActionPerformed
     
     if (passwordVisible) {
-        password.setEchoChar('•');
+        password.setEchoChar('•');  // Muestra los puntos de la contraseña
         verOcultar.setText("Mostrar");
-        passwordVisible = false;  // Añadido: cambia el estado a falso
+        passwordVisible = false;  // Cambia el estado a ocultar
     } else {
-        password.setEchoChar((char)0);
+        password.setEchoChar((char)0);  // Muestra el texto de la contraseña
         verOcultar.setText("Ocultar");
-        passwordVisible = true;   // Añadido: cambia el estado a verdadero
+        passwordVisible = true;   // Cambia el estado a mostrar
     }
     }//GEN-LAST:event_verOcultarActionPerformed
 
