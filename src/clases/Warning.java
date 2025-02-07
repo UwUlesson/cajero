@@ -10,16 +10,20 @@ public class Warning extends javax.swing.JFrame {
     public abstract class Verif_err{ 
         
         RetiroNew ret = new RetiroNew(null,null); 
-        
+        Opciones opt = new Opciones();
         public abstract void veriferrRet(); 
         
+        
         public void texto(){ 
-            
-            if(ret.Get_errRet()){ 
-                Texto.setText("Fondos Insuficientes, intente nuevamente."); 
-            }else{ 
-                Texto.setText("Algo salio mal, por favor vuelva a intentar.");  
-            } 
+            if(opt.get_esPres()){
+                    Texto.setText("Prestamo o fecha invalidos");
+            }else{
+                if(ret.Get_errRet()){ 
+                    Texto.setText("Fondos Insuficientes, intente nuevamente."); 
+                }else{ 
+                    Texto.setText("Algo salio mal, por favor vuelva a intentar.");  
+                } 
+            }
         } 
     } 
  

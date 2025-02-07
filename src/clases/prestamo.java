@@ -66,14 +66,14 @@ public class prestamo extends javax.swing.JFrame {
         return ConvDateString(fechaTentativa());
     }
     
-    public String StrfechasPago[];
+    public static String StrfechasPago[];
     // array de las 6 fechas de pago
     public void seisFechasPago(){
         Date fechasPago[];
         fechasPago = new Date[6];
         StrfechasPago = new String[6];
         for(int i=0;i<fechasPago.length;i++){
-            fechasPago[i]=(sumDiasFecha(6*(i+1),fechaTentativa()));
+            fechasPago[i]=(sumMes(i+1,fechaTentativa()));
             StrfechasPago[i]=(ConvDateString(fechasPago[i]));
             System.out.println(StrfechasPago);
         }
@@ -139,13 +139,31 @@ public class prestamo extends javax.swing.JFrame {
         // Convertir LocalDate a Date (para asignar de vuelta al JDateChooser si es necesario)
         return Date.from(nuevaFecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
+    
+    //sumar meses pero a fecha seleccionada|
+    public Date sumMes(int meses, Date fechaPed) {
+        //fecha es el cuadro de la fecha
+        //fecha seleccionada es la variable de la fecha
+        if (fechaPed == null) {
+            throw new IllegalArgumentException("No se ha seleccionado una fecha");
+        }
+        // Convertir Date a LocalDate 
+        LocalDate fechalocal = fechaPed.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+        // Sumar meses
+        LocalDate nuevaFecha = fechalocal.plusMonths(meses);
+        // Convertir LocalDate a Date (para asignar de vuelta al JDateChooser si es necesario)
+        return Date.from(nuevaFecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
+    }
+    
     //sumar dias
     public Date sumarDiasAFecha(int dias) {
     if (fecha.getDate() == null) {
         throw new IllegalArgumentException("No se ha seleccionado una fecha");
     }
     
-    // Convertir Date a LocalDate (Java 8+)
+    // Convertir Date a LocalDate 
     LocalDate fechaLocal = fecha.getDate().toInstant()
             .atZone(ZoneId.systemDefault())
             .toLocalDate();
@@ -268,6 +286,8 @@ public class prestamo extends javax.swing.JFrame {
             }
         });
 
+        fecha.setMinSelectableDate(new java.util.Date(-62135747936000L));
+
         jLabel4.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         jLabel4.setText("(puede pedir hasta 50 millones)");
 
@@ -341,22 +361,39 @@ public class prestamo extends javax.swing.JFrame {
     private static String fechaForm;
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.cont+=1;
-        fechaForm = ConvDateString(fecha.getDate());
-        veintDiasAuth();
-        SetValText(Integer.parseInt(this.Prest.getText()));
-        clasep transac = new PrestamoNew();
-        transac.Transacciones(); 
-        captura cap = new captura();
-        if(cap.GetCap()==null){
-            cap.setVisible(true);
+        try{    
+            if((fecha.getDate() == null && Prest.getText().trim().isEmpty())||
+                    (Prest.getText().equals("0")||
+                    (Integer.parseInt(Prest.getText()))>50000000)){                           
+                Warning war = new Warning();
+                war.setVisible(true);
+                this.dispose();
+
+            }else{
+                this.cont+=1;
+                fechaForm = ConvDateString(fecha.getDate());
+                veintDiasAuth();
+                seisFechasPago();
+                SetValText(Integer.parseInt(this.Prest.getText()));
+                clasep transac = new PrestamoNew();
+                transac.Transacciones(); 
+                captura cap = new captura();
+                if(cap.GetCap()==null){
+                    cap.setVisible(true);
+                    this.dispose();
+
+                }else{
+                    impresion imp = new impresion();
+                    imp.setVisible(true);
+                    this.dispose();
+                }    
+            }
+        }
+        catch(Exception e){
+            Warning war = new Warning();
+            war.setVisible(true);
             this.dispose();
-        
-        }else{
-            impresion imp = new impresion();
-            imp.setVisible(true);
-            this.dispose();
-         
+            
         }
     }//GEN-LAST:event_jButton2ActionPerformed
     

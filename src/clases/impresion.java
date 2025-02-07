@@ -135,28 +135,36 @@ public class impresion extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jLabel2.setText("Numero Prestamo");
 
         Numero.setText("Numero");
 
+        jLabel3.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jLabel3.setText("Cantidad Prestamo");
 
         CantPres.setText("CantPres");
 
+        jLabel4.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jLabel4.setText("Prestamos totales");
 
         PresTot.setText("PresTot");
 
+        jLabel5.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jLabel5.setText("Id prestamista");
 
         Id.setText("Id");
 
+        opcional1.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         opcional1.setText("Nombre prestamista");
 
+        opcional2.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         opcional2.setText("apellidos prestamista");
 
+        opcional3.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         opcional3.setText("Telefono Casa");
 
+        opcional4.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         opcional4.setText("Telefono Movil");
 
         NomPres.setText("NomPres");
@@ -167,36 +175,45 @@ public class impresion extends javax.swing.JFrame {
 
         TelMovil.setText("TelMovil");
 
+        jLabel6.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jLabel6.setText("Fecha Autorizacion");
 
         FechaAuth.setText("FechaAuth");
 
+        jLabel7.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jLabel7.setText("Fecha tentativa");
 
         FechaTent.setText("FechaTent");
 
+        jLabel9.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jLabel9.setText("Fechas de pago");
 
+        jLabel10.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jLabel10.setText("Fecha 1");
 
         Fecha1.setText("Fecha1");
 
+        jLabel13.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jLabel13.setText("Fecha 2");
 
         Fecha2.setText("Fecha2");
 
+        jLabel15.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jLabel15.setText("Fecha 3");
 
         Fecha3.setText("Fecha3");
 
+        jLabel17.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jLabel17.setText("Fecha 4");
 
         Fecha4.setText("Fecha4");
 
+        jLabel19.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jLabel19.setText("Fecha 5");
 
         Fecha5.setText("Fecha5");
 
+        jLabel21.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         jLabel21.setText("Fecha limite");
 
         Fecha6.setText("Fecha6");
@@ -234,11 +251,14 @@ public class impresion extends javax.swing.JFrame {
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel10)
+                                    .addComponent(jLabel17)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(Fecha1)
-                                        .addComponent(jLabel9)
-                                        .addComponent(Fecha4))
-                                    .addComponent(jLabel17))
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addGap(55, 55, 55)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(Fecha1)
+                                                .addComponent(Fecha4)))))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(169, 169, 169)
@@ -339,7 +359,7 @@ public class impresion extends javax.swing.JFrame {
                     .addComponent(Fecha1)
                     .addComponent(Fecha2)
                     .addComponent(Fecha3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(jLabel19)
@@ -359,6 +379,7 @@ public class impresion extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Opciones opt = new Opciones();
+        opt.set_esPres(false);
         opt.setVisible(true);
         this.dispose(); 
     }//GEN-LAST:event_jButton1ActionPerformed

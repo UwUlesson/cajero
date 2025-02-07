@@ -15,12 +15,21 @@ import clases.bienvenida;
 public class Opciones extends javax.swing.JFrame {
     private boolean esOpt;
     public static Boolean EsRetiro;
+    public static Boolean EsPrestamo=false;
     /**
      * Creates new form Opciones
      */
     public Opciones() {
         initComponents();
         setLocationRelativeTo(null);
+    }
+    
+    public Boolean get_esPres(){
+        return EsPrestamo;
+    }
+    
+    public void set_esPres(boolean val){
+        EsPrestamo = val;
     }
 
     public Boolean get_esOpt(){
@@ -203,6 +212,7 @@ public class Opciones extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        set_esOpt(true);
         captura cap = new captura();
         if(cap.GetCap()==null){
             IdPrestamo pres = new IdPrestamo();

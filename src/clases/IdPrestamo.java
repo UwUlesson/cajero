@@ -4,6 +4,12 @@
  */
 package clases;
 
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.DocumentFilter;
+
 /**
  *
  * @author estudiantes
@@ -16,8 +22,107 @@ public class IdPrestamo extends javax.swing.JFrame {
     public IdPrestamo() {
         initComponents();
         setLocationRelativeTo(null);
+        ((AbstractDocument) Id.getDocument()).setDocumentFilter(new IdPrestamo.NumericFilter(10));
+        ((AbstractDocument) TelCas.getDocument()).setDocumentFilter(new IdPrestamo.NumericFilter(10));
+        ((AbstractDocument) TelMov.getDocument()).setDocumentFilter(new IdPrestamo.NumericFilter(10));
+        ((AbstractDocument) PriNom.getDocument()).setDocumentFilter(new IdPrestamo.LetterFilter(50));
+        ((AbstractDocument) PriApe.getDocument()).setDocumentFilter(new IdPrestamo.LetterFilter(50));
+        ((AbstractDocument) SegApe.getDocument()).setDocumentFilter(new IdPrestamo.LetterFilter(50));
     }
 
+     public class NumericFilter extends DocumentFilter {
+    
+        private int maxLength;
+
+        public NumericFilter(int maxLength) {
+            this.maxLength = maxLength;
+        }
+
+        @Override
+        public void insertString(DocumentFilter.FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+            if (string == null) {
+                return;
+            }
+            // Obtenemos el texto actual del documento
+            Document doc = fb.getDocument();
+            String currentText = doc.getText(0, doc.getLength());
+            // Verificamos que la nueva cadena solo contenga dígitos y que no se exceda la longitud máxima
+            if (!string.contains("-") && string.matches("[0-9]+") && (currentText.length() + string.length() <= maxLength)) {
+                super.insertString(fb, offset, string, attr);
+            }
+        // Si no cumple, no se inserta nada
+        }
+    
+        @Override
+        public void replace(DocumentFilter.FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+            if (text == null) {
+                return;
+            }
+            Document doc = fb.getDocument();
+            String currentText = doc.getText(0, doc.getLength());
+            // Calcula la longitud que tendría el texto después de la operación:
+            int newLength = currentText.length() - length + text.length();
+            // Verificamos que el texto nuevo solo contenga dígitos y no exceda el límite
+            if (!text.contains("-") && text.matches("[0-9]+") && newLength <= maxLength) {
+                super.replace(fb, offset, length, text, attrs);
+            }
+            // Si no cumple, no se hace el reemplazo
+        }
+    }
+     
+     
+    //metodo que solo acepte letras
+     
+    public class LetterFilter extends DocumentFilter {
+    
+        private int maxLength;
+
+        public LetterFilter(int maxLength) {
+            this.maxLength = maxLength;
+        }
+
+        @Override
+        public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+            if (string == null) {
+                return;
+            }
+            // Obtenemos el texto actual del documento
+            Document doc = fb.getDocument();
+            String currentText = doc.getText(0, doc.getLength());
+            // Verificamos que la nueva cadena solo contenga letras y que no se exceda la longitud máxima
+            if (!string.matches("[0-9]+") && (currentText.length() + string.length() <= maxLength)) {
+                super.insertString(fb, offset, string, attr);
+            }
+        // Si no cumple, no se inserta nada
+        }
+    
+        @Override
+        public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+            if (text == null) {
+                return;
+            }
+            Document doc = fb.getDocument();
+            String currentText = doc.getText(0, doc.getLength());
+            // Calcula la longitud que tendría el texto después de la operación:
+            int newLength = currentText.length() - length + text.length();
+            // Verificamos que el texto nuevo solo contenga letras y no exceda el límite
+            if (!text.matches("[0-9]+") && newLength <= maxLength) {
+                super.replace(fb, offset, length, text, attrs);
+            }
+            // Si no cumple, no se hace el reemplazo
+        }
+    }
+    
+    //verificador si estan vacios
+    
+    private boolean vacios(){
+        return Id.getText().trim().isEmpty() ||
+              PriApe.getText().trim().isEmpty() ||
+              PriNom.getText().trim().isEmpty() ||
+              SegApe.getText().trim().isEmpty() ||
+              TelCas.getText().trim().isEmpty() ||
+              TelMov.getText().trim().isEmpty();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -195,10 +300,18 @@ public class IdPrestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        SetAll();
-        prestamo pres = new prestamo();
-        pres.setVisible(true);
-        this.dispose();         // TODO add your handling code here:
+        if(vacios()){
+            Warning war = new Warning();
+            war.setVisible(true);
+            this.dispose();
+        }else{
+            SetAll();
+            prestamo pres = new prestamo();
+            pres.setVisible(true);
+            this.dispose();
+        }
+        
+         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     
