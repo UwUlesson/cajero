@@ -273,15 +273,21 @@ public class Teclado extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // continuar     
-        if(Boolean.TRUE.equals(EsRetiro)){
-            RetiroNew transac = new RetiroNew(this, getCasilla());
-            transac.Transacciones();
-            
-        }else{
-            System.out.println(EsRetiro);
-            clasep transac = new deposito(this);
-            transac.Transacciones();
+        try{
+            // continuar     
+            if(Boolean.TRUE.equals(EsRetiro)){
+                RetiroNew transac = new RetiroNew(this, getCasilla());
+                transac.Transacciones();
+
+            }else{
+                System.out.println(EsRetiro);
+                clasep transac = new deposito(this);
+                transac.Transacciones();
+            }
+        }catch(Exception e){
+            Warning war = new Warning();
+            war.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_jButton13ActionPerformed
 

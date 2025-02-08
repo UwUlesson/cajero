@@ -5,6 +5,7 @@
 package clases;
 
 import com.toedter.calendar.JDateChooser;
+import java.beans.PropertyChangeEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Calendar;
@@ -21,7 +22,31 @@ public class prestamo extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         ((AbstractDocument) Prest.getDocument()).setDocumentFilter(new NumericFilter(8));
-
+        PrestamoNew pres = new PrestamoNew();
+        Prest.addPropertyChangeListener( evt -> {
+            try{
+                if ((pres.GetVal()+Integer.parseInt(Prest.getText()))>50000000) {
+                    Texto2.setText("* La cantidad pedida supera lo que esta guardado!");
+                    Warning1.setText("*");
+                } else {
+                    Texto2.setText("");
+                    Warning1.setText("");
+                }
+            }catch (Exception ex) {
+            }
+        });
+        fecha.addPropertyChangeListener( (PropertyChangeEvent evt) -> {
+            try{
+                if (GetDias(fecha.getDate()) >= 20) {
+                    Texto.setText("** Entra en los 20 dias!");
+                    Warning2.setText("**");
+                } else {
+                    Texto.setText("");
+                    Warning2.setText("");
+                }
+            }catch (Exception ex) {
+            }
+        });
     }
     private static Date DateAuth;
     //sumar 11 dias si la funcion supera los 20 dias, devuelve fecha auth
@@ -208,8 +233,6 @@ public class prestamo extends javax.swing.JFrame {
     return DiaMes;
     }
        
-    
-    
     //filtro para que solo acepte numeros y limite
     public class NumericFilter extends DocumentFilter {
     
@@ -269,6 +292,10 @@ public class prestamo extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         fecha = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
+        Texto = new javax.swing.JLabel();
+        Texto2 = new javax.swing.JLabel();
+        Warning1 = new javax.swing.JLabel();
+        Warning2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -277,6 +304,7 @@ public class prestamo extends javax.swing.JFrame {
 
         jLabel2.setText("Cuanto quiere pedir:");
 
+        Prest.setText("0");
         Prest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PrestActionPerformed(evt);
@@ -306,6 +334,18 @@ public class prestamo extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         jLabel4.setText("(puede pedir hasta 50 millones)");
 
+        Texto.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        Texto.setForeground(new java.awt.Color(255, 0, 0));
+
+        Texto2.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        Texto2.setForeground(new java.awt.Color(255, 0, 0));
+
+        Warning1.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        Warning1.setForeground(new java.awt.Color(255, 0, 0));
+
+        Warning2.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        Warning2.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -319,9 +359,12 @@ public class prestamo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Warning1)
+                            .addComponent(Warning2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -329,27 +372,40 @@ public class prestamo extends javax.swing.JFrame {
                                 .addGap(38, 38, 38)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(Prest)
-                                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(Texto2)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addGap(60, 60, 60)
+                                    .addComponent(Texto)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(197, 197, 197)
                         .addComponent(jLabel1)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jLabel1)
-                .addGap(50, 50, 50)
-                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Texto2)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(Texto, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(Prest, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Prest, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Warning1))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addComponent(jLabel3))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(Warning2)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -357,7 +413,7 @@ public class prestamo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -382,7 +438,8 @@ public class prestamo extends javax.swing.JFrame {
                     (Prest.getText().equals("0")||
                     (Integer.parseInt(Prest.getText()))>50000000)||
                     (GetDias(fecha.getDate())>=20)||
-                    ((pres.GetVal()+Integer.parseInt(Prest.getText()))>50000000)){                           
+                    ((pres.GetVal()+Integer.parseInt(Prest.getText()))>50000000)||
+                    (fecha.getDate()==null)){                           
                 Warning war = new Warning();
                 war.setVisible(true);
                 this.dispose();
@@ -458,6 +515,10 @@ public class prestamo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField Prest;
+    private javax.swing.JLabel Texto;
+    private javax.swing.JLabel Texto2;
+    private javax.swing.JLabel Warning1;
+    private javax.swing.JLabel Warning2;
     private com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
